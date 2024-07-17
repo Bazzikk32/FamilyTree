@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Human implements Serializable {
-    private long id;
+    private long genId;
     private String name;
     private Gender gender;
     private LocalDate birthDay;
@@ -18,7 +18,7 @@ public class Human implements Serializable {
 
     public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDate,
                  Human father, Human mother) {
-        id = -1;
+        genId = 1;
         this.name = name;
         this.gender = gender;
         this.birthDay = birthDay;
@@ -33,7 +33,7 @@ public class Human implements Serializable {
         children = new ArrayList<>();
     }
 
-    public Human(String name, Gender gender, LocalDate birthDay) {
+    public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDate, long genId) {
 
         this(name, gender, birthDay, null, null, null);
     }
@@ -100,7 +100,7 @@ public class Human implements Serializable {
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.genId = id;
     }
 
     public void setName(String name) {
@@ -191,7 +191,7 @@ public class Human implements Serializable {
     public String getInfo(){
         StringBuilder sb = new StringBuilder();
         sb.append("id: ");
-        sb.append(id);
+        sb.append(genId);
         sb.append(", имя: ");
         sb.append(name);
         sb.append(", пол: ");
