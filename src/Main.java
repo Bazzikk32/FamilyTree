@@ -11,10 +11,6 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-
-//        FamilyTree familyTree = testTree();
-//        System.out.println(familyTree);
-
         Service service = new Service();
         service.addHuman("Миша",Gender.Male, LocalDate.of(1991,02,01),null);
         service.addHuman("Саша",Gender.Female, LocalDate.of(1992,03,01),null);
@@ -23,40 +19,28 @@ public class Main {
         service.addHuman("Катя",Gender.Female, LocalDate.of(1995,06,01),null);
         service.addHuman("Гриша",Gender.Male, LocalDate.of(1996,07,01),null);
         System.out.println(service.getHumanListInfo());
+        //service.save(service.getHumanListInfo(), service.filePath);
 
-        FamilyTree familyTree = new FamilyTree();
+        System.out.println("Сортировка по возрасту:\n");
+        service.sortByAge();
+        System.out.println(service.getHumanListInfo());
+        System.out.println("Сортировка по имени:\n");
+        service.sortByName();
+        System.out.println(service.getHumanListInfo());
 
+        service.save(service.getHumanListInfo(), service.filePath);
 
-//        String filePath = "src/writer/tree.txt";
-//
-//        FamilyTree familyTree = read(filePath);
-//        System.out.println(familyTree);
-//
-//        save(familyTree, filePath);
-
-
-
-        System.out.println("Сортировка по возрасту\n");
-        familyTree.sortByAge();
-        System.out.println(familyTree);
-
-        System.out.println("Сортировка по имени\n");
-        familyTree.sortByName();
+        System.out.println("Список из файла\n");
+        FamilyTree familyTree = service.read(service.filePath);
         System.out.println(familyTree);
 
 
 
 
-//    }
-//    static  FamilyTree read (String filePath){
-//        FileHandler fileHandler = new FileHandler();
-//        return (FamilyTree) fileHandler.read(filePath);
+
+
 //    }
 //
-//    static  void save (FamilyTree familyTree,String filePath){
-//        FileHandler fileHandler = new FileHandler();
-//        fileHandler.save((Serializable) familyTree, filePath);
-//    }
 //
 //    static FamilyTree testTree(){
 //        FamilyTree familyTree = new FamilyTree();

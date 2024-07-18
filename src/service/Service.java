@@ -2,28 +2,26 @@ package service;
 
 
 import family_tree.FamilyTree;
-import family_tree.comparator.FamilyTreeCompareByAge;
-import family_tree.comparator.FamilyTreeCompareByName;
 import human.Gender;
 import human.Human;
 import writer.FileHandler;
 import writer.Writable;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Service  {
+public class Service implements Serializable {
 
     private FamilyTree familyTree;
     private HumanBuilder humanBuilder;
     private Writable writable;
+    public String filePath = "src/writer/tree.txt";
 
     public Service() {
         familyTree = new FamilyTree();
         humanBuilder = new HumanBuilder();
         writable = new FileHandler();
+        String filePath = "src/writer/tree.txt";
     }
 
     public void addHuman (String name, Gender gender, LocalDate birthDay, LocalDate deathDate){
@@ -42,10 +40,22 @@ public class Service  {
         return sb.toString();
     }
 
-    public void sortByName2 (){ Collections.sort();
+    public void sortByName (){
+        familyTree.sortByName();
+    }
 
     public void sortByAge (){
-        Collections.sort(familyTree, new FamilyTreeCompareByAge());
+        familyTree.sortByAge();
+    }
+
+    public FamilyTree read (String filePath){
+        FileHandler fileHandler = new FileHandler();
+        return (FamilyTree) fileHandler.read(filePath);
+    }
+
+    public void save (String humanListInfo, String filePath){
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.save((Serializable) familyTree, this.filePath);
     }
 
 
