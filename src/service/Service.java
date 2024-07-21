@@ -2,6 +2,7 @@ package service;
 
 
 import family_tree.FamilyTree;
+import family_tree.TreeNode;
 import human.Gender;
 import human.Human;
 import writer.FileHandler;
@@ -18,7 +19,8 @@ public class Service implements Serializable {
     public String filePath = "src/writer/tree.txt";
 
     public Service() {
-        familyTree = new FamilyTree();
+
+        familyTree = new FamilyTree<Human>();
         humanBuilder = new HumanBuilder();
         writable = new FileHandler();
         String filePath = "src/writer/tree.txt";
@@ -32,7 +34,7 @@ public class Service implements Serializable {
     public String getHumanListInfo(){
         StringBuilder sb = new StringBuilder();
         sb.append("Список древа:\n");
-        for (Human human: familyTree){
+        for (Object human: familyTree){
             sb.append(human);
             sb.append("\n");
 
