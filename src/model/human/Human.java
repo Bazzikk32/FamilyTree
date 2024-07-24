@@ -1,6 +1,6 @@
-package human;
+package model.human;
 
-import family_tree.TreeNode;
+import model.family_tree.TreeNode;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -1,12 +1,11 @@
-package service;
+package model.service;
 
 
-import family_tree.FamilyTree;
-import family_tree.TreeNode;
-import human.Gender;
-import human.Human;
-import writer.FileHandler;
-import writer.Writable;
+import model.family_tree.FamilyTree;
+import model.human.Gender;
+import model.human.Human;
+import model.writer.FileHandler;
+import model.writer.Writable;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,14 +15,14 @@ public class Service implements Serializable {
     private FamilyTree familyTree;
     private HumanBuilder humanBuilder;
     private Writable writable;
-    public String filePath = "src/writer/tree.txt";
+    public String filePath = "src/model/writer/tree.txt";
 
     public Service() {
 
         familyTree = new FamilyTree<Human>();
         humanBuilder = new HumanBuilder();
         writable = new FileHandler();
-        String filePath = "src/writer/tree.txt";
+        String filePath = "model/writer/tree.txt";
     }
 
     public void addHuman (String name, Gender gender, LocalDate birthDay, LocalDate deathDate){
@@ -55,7 +54,7 @@ public class Service implements Serializable {
         return (FamilyTree) fileHandler.read(filePath);
     }
 
-    public void save (String humanListInfo, String filePath){
+    public void save (String getHumanList, String filePath){
         FileHandler fileHandler = new FileHandler();
         fileHandler.save((Serializable) familyTree, this.filePath);
     }

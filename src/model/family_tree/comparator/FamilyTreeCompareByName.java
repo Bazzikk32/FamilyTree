@@ -1,7 +1,6 @@
-package family_tree.comparator;
+package model.family_tree.comparator;
 
-import family_tree.TreeNode;
-import human.Human;
+import model.family_tree.TreeNode;
 
 import java.util.Comparator;
 
