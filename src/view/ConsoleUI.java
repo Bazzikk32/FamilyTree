@@ -15,90 +15,59 @@ public class ConsoleUI implements View, Serializable {
     private LocalDate deathDate;
     Gender gender;
     private boolean work = true;
+    private MainMenu menu;
 
 
     public ConsoleUI() {
         scanner = new Scanner(System.in);
         presenter = new Presenter(this);
         work = true;
+        menu = new MainMenu(this);
     }
 
     @Override
     public void start() {
         System.out.println("Hello!");
         while (work){
-            System.out.println("Выберете действие:");
-            System.out.println("1. Создать человека");
-            System.out.println("2. Список персон");
-            System.out.println("3. Добавить родителя");
-            System.out.println("4. Сортировать по возрасту");
-            System.out.println("5. Сохранить в файл");
-            System.out.println("6. Прочитать из файла");
-            System.out.println("7. Завершение работы");
+            System.out.println(menu.menu());
+            String choiceStr = scanner.nextLine();
 
-            String choice = scanner.nextLine();
-            switch (choice){
-                case "1":
-                    addHuman();
-                    break;
-                case "2":
-                    getHumanInfo();
-                    break;
-                case "3":
-
-                    break;
-                case "4":
-                    sortByAge();
-                    break;
-                case "5":
-                    saveToFile();
-                    break;
-                case "6":
-                    readFromFile();
-                    printFromRead();
-                    break;
-                case "7":
-                    finish ();
-                    break;
-                default:
-                    System.out.println("Введены неверные данные");
-            }
-
-
+            int choice = Integer.parseInt(choiceStr);
+            menu.execute(choice);
         }
 
     }
 
-    private void printFromRead() {
+    public void printFromRead() {
         presenter.printFromRead();
     }
 
-    private void readFromFile() {
+    public void readFromFile() {
         presenter.readFromFile();
     }
 
-    private void saveToFile() {
+    public void saveToFile() {
         presenter.addToFile();
     }
 
 
-    private void sortByAge() {
+    public void sortByAge() {
         presenter.sortByAge();
     }
 
 
 
 
-    private void finish() {
+    public void finish() {
         System.out.println("See you again...");
         work = false;
     }
 
-    private void getHumanInfo() {
+    public void getHumanInfo() {
         presenter.getHumanList();
     }
 
-    private void addHuman() {
+    public void addHuman() {
         System.out.println("Введите имя персоны");
         String name = scanner.nextLine();
         System.out.println("Введите пол персоны, если мужчина: 1, если женщина: 2");
