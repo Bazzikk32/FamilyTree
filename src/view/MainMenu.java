@@ -34,4 +34,8 @@ public class MainMenu {
 Command command = commands.get((choice-1));
 command.execute();
     }
+
+    public int size() {
+        return commands.size();
+    }
 }

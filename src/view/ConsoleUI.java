@@ -28,14 +28,23 @@ public class ConsoleUI implements View, Serializable {
     @Override
     public void start() {
         System.out.println("Hello!");
-        while (work){
+        while (work) {
             System.out.println(menu.menu());
             String choiceStr = scanner.nextLine();
-
-            int choice = Integer.parseInt(choiceStr);
+            int choice = 0;
+            if (checkChoice(choiceStr) == true) {
+            }choice = Integer.parseInt(choiceStr);
             menu.execute(choice);
         }
 
+    }
+    public Boolean checkChoice (String choiceStr) {
+        if (choiceStr.matches("[0-9]*")){
+            int choice = Integer.parseInt(choiceStr);
+            return choice >= 1 && choice <= menu.size();
+
+        }
+        return false;
     }
 
     public void printFromRead() {
