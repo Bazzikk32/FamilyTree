@@ -16,13 +16,16 @@ public class Service implements Serializable {
     private HumanBuilder humanBuilder;
     private Writable writable;
     public String filePath = "src/model/writer/tree.txt";
+    private Human human;
 
     public Service() {
+
 
         familyTree = new FamilyTree<Human>();
         humanBuilder = new HumanBuilder();
         writable = new FileHandler();
-        String filePath = "model/writer/tree.txt";
+
+
     }
 
     public void addHuman (String name, Gender gender, LocalDate birthDay, LocalDate deathDate){
@@ -57,6 +60,14 @@ public class Service implements Serializable {
     public void save (String getHumanList, String filePath){
         FileHandler fileHandler = new FileHandler();
         fileHandler.save((Serializable) familyTree, this.filePath);
+    }
+
+    public void addToParent (){
+        familyTree.addToParent(human);
+    }
+
+    public Human getById (int id){
+       return (Human) familyTree.getById(id);
     }
 
 

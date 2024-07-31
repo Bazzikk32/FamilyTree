@@ -11,8 +11,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class FamilyTree<E extends TreeNode<E>> implements Serializable, Iterable <Human>{
-    private long humansID;
+    private int humansID;
     private List <E> humanlist;
+    Human human;
 
     public FamilyTree() {this(new ArrayList<>());
     }
@@ -31,6 +32,13 @@ public class FamilyTree<E extends TreeNode<E>> implements Serializable, Iterable
         for (E child : human.getChildren()) {
             child.addParents(human);
         }
+    }
+
+    public E getById(long humansID){
+        for (E human: humanlist ) {
+            if(human.getId() == humansID) return human;
+
+        } return null;
     }
 
     public boolean add (E human){

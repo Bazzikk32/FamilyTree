@@ -1,6 +1,7 @@
 package view;
 
 import model.human.Gender;
+import model.human.Human;
 import presenter.Presenter;
 
 import java.io.Serializable;
@@ -33,13 +34,15 @@ public class ConsoleUI implements View, Serializable {
             String choiceStr = scanner.nextLine();
             int choice = 0;
             if (checkChoice(choiceStr) == true) {
-            }choice = Integer.parseInt(choiceStr);
+            }
+            choice = Integer.parseInt(choiceStr);
             menu.execute(choice);
         }
 
     }
-    public Boolean checkChoice (String choiceStr) {
-        if (choiceStr.matches("[0-9]*")){
+
+    public Boolean checkChoice(String choiceStr) {
+        if (choiceStr.matches("[0-9]*")) {
             int choice = Integer.parseInt(choiceStr);
             return choice >= 1 && choice <= menu.size();
 
@@ -64,7 +67,9 @@ public class ConsoleUI implements View, Serializable {
         presenter.sortByAge();
     }
 
-
+    public void sortByName() {
+        presenter.sortByName();
+    }
 
 
     public void finish() {
@@ -76,16 +81,27 @@ public class ConsoleUI implements View, Serializable {
         presenter.getHumanList();
     }
 
+    public void addToParent() {
+        System.out.println("Введите id персоны к которому хотите добавить родителя");
+        String childId = scanner.nextLine();
+        int childIdInt = Integer.parseInt(childId);
+        presenter.addToParent();
+
+
+    }
+
     public void addHuman() {
         System.out.println("Введите имя персоны");
         String name = scanner.nextLine();
         System.out.println("Введите пол персоны, если мужчина: 1, если женщина: 2");
         String genderChoice = scanner.nextLine();
-        switch (genderChoice){
-            case "1": gender = Gender.Male;
-            break;
-            case "2": gender = Gender.Female;
-            break;
+        switch (genderChoice) {
+            case "1":
+                gender = Gender.Male;
+                break;
+            case "2":
+                gender = Gender.Female;
+                break;
             default:
                 System.out.println("Вы ввели некорректное значение, попробуйте еще раз");
         }
@@ -98,11 +114,12 @@ public class ConsoleUI implements View, Serializable {
 
         System.out.println("Если человек жив введите: 1, если уже мертв введите:2");
         String liveOrNot = scanner.nextLine();
-        switch (liveOrNot){
+        switch (liveOrNot) {
             case "1":
                 deathDate = null;
-            break;
-            case "2": System.out.println("Введите дату смерти в формате yyyy-MM-dd");
+                break;
+            case "2":
+                System.out.println("Введите дату смерти в формате yyyy-MM-dd");
                 String dateOfDeathStr = scanner.nextLine();
                 deathDate = LocalDate.parse(dateOfDeathStr);
                 break;
@@ -121,4 +138,5 @@ public class ConsoleUI implements View, Serializable {
         System.out.println(answer);
 
     }
+
 }

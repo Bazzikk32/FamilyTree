@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TreeNode<T> extends Serializable {
-    long setId(long l);
-
+    long getId();
+    void setId(int i);
     T getFather();
     T getMother();
     boolean addChild(T human);
@@ -16,4 +16,5 @@ public interface TreeNode<T> extends Serializable {
     LocalDate getBirthDay();
     List<T> getParents();
     List<T> getChildren();
-    }
+
+}

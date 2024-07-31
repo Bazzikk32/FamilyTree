@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Human implements Serializable, TreeNode<Human> {
-    private long genId;
+    private int id;
     private String name;
     private Gender gender;
     private LocalDate birthDay;
@@ -19,8 +19,8 @@ public class Human implements Serializable, TreeNode<Human> {
     private Human spouse;
 
     public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDate,
-                 Human father, Human mother) {
-        genId = 1;
+                 Human father, Human mother, int id) {
+        this.id=id;
         this.name = name;
         this.gender = gender;
         this.birthDay = birthDay;
@@ -35,13 +35,13 @@ public class Human implements Serializable, TreeNode<Human> {
         children = new ArrayList<>();
     }
 
-    public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDate, long genId) {
+    public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDate, int id) {
 
-        this(name, gender, birthDay, null, null, null);
+        this(name, gender, birthDay, null, null, null, id);
     }
 
-    public Human(String name, Gender gender, LocalDate birthDay, Human father,  Human mother) {
-        this(name, gender,birthDay, null, father,mother);
+    public Human(String name, Gender gender, LocalDate birthDay, Human father,  Human mother, int id) {
+        this(name, gender,birthDay, null, father,mother, id);
     }
 
 
@@ -66,6 +66,7 @@ public class Human implements Serializable, TreeNode<Human> {
 
     }
 
+
     public Human getFather (){
         for (Human parent : parents) {
             if (parent.getGender()==Gender.Male){
@@ -75,6 +76,8 @@ public class Human implements Serializable, TreeNode<Human> {
         }
         return null;
     }
+
+
 
     public Human getMother (){
         for (Human parent : parents) {
@@ -101,9 +104,12 @@ public class Human implements Serializable, TreeNode<Human> {
         }
     }
 
-    public long setId(long id) {
-        this.genId = id;
+    public long getId() {
         return id;
+    }
+
+    public void setId(int i) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -194,7 +200,7 @@ public class Human implements Serializable, TreeNode<Human> {
     public String getInfo(){
         StringBuilder sb = new StringBuilder();
         sb.append("id: ");
-        sb.append(genId);
+        sb.append(id);
         sb.append(", имя: ");
         sb.append(name);
         sb.append(", пол: ");
