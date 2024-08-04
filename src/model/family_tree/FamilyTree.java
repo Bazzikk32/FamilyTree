@@ -13,7 +13,7 @@ import java.util.List;
 public class FamilyTree<E extends TreeNode<E>> implements Serializable, Iterable <Human>{
     private int humansID;
     private List <E> humanlist;
-    Human human;
+
 
     public FamilyTree() {this(new ArrayList<>());
     }
@@ -24,7 +24,7 @@ public class FamilyTree<E extends TreeNode<E>> implements Serializable, Iterable
 
     public void addToParent(E human){
         for (E parent : human.getParents()) {
-            parent.addChild(human);
+            parent.addParents(human);
         }
     }
 

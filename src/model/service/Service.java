@@ -7,6 +7,7 @@ import model.human.Human;
 import model.writer.FileHandler;
 import model.writer.Writable;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -19,7 +20,6 @@ public class Service implements Serializable {
     private Human human;
 
     public Service() {
-
 
         familyTree = new FamilyTree<Human>();
         humanBuilder = new HumanBuilder();
@@ -52,14 +52,12 @@ public class Service implements Serializable {
         familyTree.sortByAge();
     }
 
-    public FamilyTree read (String filePath){
-        FileHandler fileHandler = new FileHandler();
-        return (FamilyTree) fileHandler.read(filePath);
+    public void save(String file) throws IOException {  // Сохранить в файл
+        writable.save(getHumanListInfo(),file);
     }
-
-    public void save (String getHumanList, String filePath){
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.save((Serializable) familyTree, this.filePath);
+    public void read(String file) throws IOException, ClassNotFoundException {  //  Считать из файла
+        Object familyTreeSave=writable.read(file);
+        System.out.println(familyTreeSave);
     }
 
     public void addToParent (){
@@ -68,6 +66,12 @@ public class Service implements Serializable {
 
     public Human getById (int id){
        return (Human) familyTree.getById(id);
+    }
+    public void addMother(Human human,Human mother) {  //добавить мать
+        human.addMother(mother);
+    }
+    public void addFather(Human human,Human father) {   //добавить отца
+        human.addFather(father);
     }
 
 

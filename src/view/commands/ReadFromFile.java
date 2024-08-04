@@ -2,6 +2,8 @@ package view.commands;
 
 import view.ConsoleUI;
 
+import java.io.IOException;
+
 public class ReadFromFile extends Command {
     public ReadFromFile( ConsoleUI consoleUI) {
         super("Выгрузить список из файла", consoleUI);
@@ -9,8 +11,8 @@ public class ReadFromFile extends Command {
 
 
     @Override
-    public void execute() {
+    public void execute() throws IOException, ClassNotFoundException {
         getConsoleUI().readFromFile();
-        getConsoleUI().printFromRead();
+
     }
 }

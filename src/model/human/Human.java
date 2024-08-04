@@ -11,6 +11,7 @@ import java.util.List;
 public class Human implements Serializable, TreeNode<Human> {
     private int id;
     private String name;
+    private Human mother,father;
     private Gender gender;
     private LocalDate birthDay;
     private LocalDate deathDate;
@@ -64,6 +65,19 @@ public class Human implements Serializable, TreeNode<Human> {
         }
         return false;
 
+    }
+
+    public void addMother(Human mother) {  //добавить мать
+        if (mother!=null) {
+            if (this.mother==null)
+                this.mother = mother;
+        }
+    }
+    public void addFather(Human father){   //добавить отца
+        if (father!=null) {
+            if (this.father==null)
+                this.father = father;
+        }
     }
 
 

@@ -4,6 +4,7 @@ import model.human.Gender;
 import model.human.Human;
 import presenter.Presenter;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +28,7 @@ public class ConsoleUI implements View, Serializable {
     }
 
     @Override
-    public void start() {
+    public void start() throws IOException, ClassNotFoundException {
         System.out.println("Hello!");
         while (work) {
             System.out.println(menu.menu());
@@ -50,16 +51,20 @@ public class ConsoleUI implements View, Serializable {
         return false;
     }
 
-    public void printFromRead() {
-        presenter.printFromRead();
+//    public void printFromRead() {
+//        presenter.printFromRead();
+//    }
+
+    public void readFromFile() throws IOException, ClassNotFoundException {
+        System.out.println("введите имя файла :");
+        String nameFile=scanner.nextLine();
+        presenter.readFromFile(nameFile);
     }
 
-    public void readFromFile() {
-        presenter.readFromFile();
-    }
-
-    public void saveToFile() {
-        presenter.addToFile();
+    public void saveToFile() throws IOException {
+        System.out.println("введите имя файла , куда сохранить:");
+        String nameFile=scanner.nextLine();
+        presenter.addToFile(nameFile);
     }
 
 
@@ -81,14 +86,6 @@ public class ConsoleUI implements View, Serializable {
         presenter.getHumanList();
     }
 
-    public void addToParent() {
-        System.out.println("Введите id персоны к которому хотите добавить родителя");
-        String childId = scanner.nextLine();
-        int childIdInt = Integer.parseInt(childId);
-        presenter.addToParent();
-
-
-    }
 
     public void addHuman() {
         System.out.println("Введите имя персоны");
@@ -139,4 +136,14 @@ public class ConsoleUI implements View, Serializable {
 
     }
 
+    public void AddToParents() {
+        System.out.println("Введите id персоны к которому хотите добавить родителя");
+        String childId = scanner.nextLine();
+        int childIdInt = Integer.parseInt(childId);
+        System.out.println("введите id отца:");
+        String nameFather=scanner.nextLine();
+        Human human=presenter.getById(Integer.parseInt(childId));
+        Human parent=presenter.getById(Integer.parseInt(nameFather));
+        presenter.addToParent(human,parent);
+    }
 }

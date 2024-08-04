@@ -6,6 +6,7 @@ import model.human.Human;
 import model.service.Service;
 import view.View;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -35,20 +36,9 @@ public class Presenter implements Serializable {
         service.sortByAge();
         getHumanList();
     }
+    public void addToFile(String file) throws IOException {service.save(file);}
+    public void readFromFile(String file) throws IOException, ClassNotFoundException {service.read(file);}
 
-    public void addToFile() {
-        service.save(service.getHumanListInfo(), service.filePath);
-
-    }
-
-    public void readFromFile() {
-        service.read(service.filePath);
-    }
-
-    public void printFromRead() {
-        FamilyTree tree = service.read(service.filePath);
-        System.out.println(tree);
-    }
 
     public void sortByName(){
         service.sortByName();
@@ -56,7 +46,7 @@ public class Presenter implements Serializable {
     }
 
 
-    public void addToParent() {
+    public void addToParent(Human human, Human parent) {
         service.addToParent();
     }
 

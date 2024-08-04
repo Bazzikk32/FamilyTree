@@ -3,25 +3,19 @@ package model.writer;
 import java.io.*;
 
 public class FileHandler implements Writable {
-    public boolean save (Serializable serializable, String filePath){
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath))){
-            objectOutputStream.writeObject(serializable);
-            return true;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-
+    @Override
+    public void save(Serializable serializable, String nameFile) throws IOException {   //Сериализация в файл с помощью класса ObjectOutputStream
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+                new FileOutputStream(nameFile));
+        objectOutputStream.writeObject(serializable);
+        objectOutputStream.close();
     }
 
-    public Object read (String filePath){
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))){
-            return objectInputStream.readObject();
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-
+    @Override
+    public Object read(String nameFile) throws IOException, ClassNotFoundException {   // Востановление из файла с помощью класса ObjectInputStream
+        ObjectInputStream objectInputStream = new ObjectInputStream(
+                new FileInputStream(nameFile));
+        return objectInputStream.readObject();
     }
 
 
