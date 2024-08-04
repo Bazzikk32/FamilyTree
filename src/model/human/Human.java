@@ -80,28 +80,14 @@ public class Human implements Serializable, TreeNode<Human> {
         }
     }
 
-
-    public Human getFather (){
-        for (Human parent : parents) {
-            if (parent.getGender()==Gender.Male){
-                return parent;
-            }
-
-        }
-        return null;
+    public Human getMother() {
+        return mother;
     }
 
-
-
-    public Human getMother (){
-        for (Human parent : parents) {
-            if (parent.getGender()==Gender.Female){
-                return parent;
-            }
-
-        }
-        return null;
+    public Human getFather() {
+        return father;
     }
+
 
     private int getPeriod(LocalDate birthDay, LocalDate deathDate){
         Period diff = Period.between(birthDay, deathDate);

@@ -16,7 +16,6 @@ public class Service implements Serializable {
     private FamilyTree familyTree;
     private HumanBuilder humanBuilder;
     private Writable writable;
-    public String filePath = "src/model/writer/tree.txt";
     private Human human;
 
     public Service() {
@@ -60,8 +59,8 @@ public class Service implements Serializable {
         System.out.println(familyTreeSave);
     }
 
-    public void addToParent (){
-        familyTree.addToParent(human);
+    public void addToParent (Human human, Human parent){
+        familyTree.addToParent(this.human);
     }
 
     public Human getById (int id){

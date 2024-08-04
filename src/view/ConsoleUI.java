@@ -136,14 +136,35 @@ public class ConsoleUI implements View, Serializable {
 
     }
 
-    public void AddToParents() {
-        System.out.println("Введите id персоны к которому хотите добавить родителя");
-        String childId = scanner.nextLine();
-        int childIdInt = Integer.parseInt(childId);
+    public void addFather() {
+        System.out.println("введите id , кому добавить отца:");
+        String nameHuman=scanner.nextLine();
         System.out.println("введите id отца:");
         String nameFather=scanner.nextLine();
-        Human human=presenter.getById(Integer.parseInt(childId));
-        Human parent=presenter.getById(Integer.parseInt(nameFather));
-        presenter.addToParent(human,parent);
+        Human human=presenter.getById(Integer.parseInt(nameHuman));
+        Human father=presenter.getById(Integer.parseInt(nameFather));
+        presenter.addFather(human,father);
     }
+
+    public void addMother() {
+
+        System.out.println("введите id , кому добавить мать:");
+        String nameHuman=scanner.nextLine();
+        System.out.println("введите id матери:");
+        String nameMather=scanner.nextLine();
+        Human human=presenter.getById(Integer.parseInt(nameHuman));
+        Human mother=presenter.getById(Integer.parseInt(nameMather));
+        presenter.addMother(human,mother);
+    }
+
+//    public void AddToParents() {
+//        System.out.println("Введите id персоны к которому хотите добавить родителя");
+//        String childId = scanner.nextLine();
+//        int childIdInt = Integer.parseInt(childId);
+//        System.out.println("введите id отца:");
+//        String nameFather=scanner.nextLine();
+//        Human human=presenter.getById(Integer.parseInt(childId));
+//        Human parent=presenter.getById(Integer.parseInt(nameFather));
+//        presenter.addToParent(human,parent);
+//    }
 }

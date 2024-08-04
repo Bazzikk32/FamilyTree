@@ -18,7 +18,8 @@ public class MainMenu {
         commands.add(new SortByName(consoleUI));
         commands.add(new SaveToFile(consoleUI));
         commands.add(new ReadFromFile(consoleUI));
-        commands.add(new AddToParents(consoleUI));
+        commands.add(new AddMother(consoleUI));
+        commands.add(new AddFather(consoleUI));
         commands.add(new Finish(consoleUI));
     }
 

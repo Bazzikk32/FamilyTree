@@ -44,10 +44,16 @@ public class Presenter implements Serializable {
         service.sortByName();
         getHumanList();
     }
+    public void addMother(Human human,Human mother) {
+        service.addMother(human,mother);
+    }
+    public void addFather(Human human,Human father) {
+        service.addFather(human,father);
+    }
 
 
     public void addToParent(Human human, Human parent) {
-        service.addToParent();
+        service.addToParent(human, parent);
     }
 
     public Human getById(int id){   // вернуть по id
